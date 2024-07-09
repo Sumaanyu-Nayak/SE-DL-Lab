@@ -81,10 +81,6 @@ while (t):
     input_str_c = input("Enter elements of the Football separated by space:")
     c = input_str_c.split()  
     c = [int(num) for num in c] 
-    # b = [int(item) for item in input("Enter \
-    #             the list items : ").split()]
-    # c = [int(item) for item in input("Enter \
-    #             the list items : ").split()]
 
     print("i) ",q1(a,b))
     print("ii) ",q2(a,b))
