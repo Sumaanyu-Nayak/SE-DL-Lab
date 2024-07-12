@@ -120,15 +120,21 @@ def Q7(mat,m,n): #Transpose
 
 def saddle(mat,m,n):
     ret=[]
-    for i in range(m):
-        low = min(mat[i])
-        low = mat[i].index(low)
+    for i in range(m):                                # [1,2,3]
+        low = min(mat[i])                             # [4,5,6]
+        low = mat[i].index(low)                       # [7,7,7] 
         for j in range(n):
-            if mat[i][low] < mat[i][j]:
+            if j==low:
+                continue
+            elif mat[i][low] < mat[i][j]:
+                print("break")
+                print(mat[i][low],mat[j][i])
                 break
             else:
+                print("append")
+                print(mat[i][low],mat[j][i])
                 ret.append({"value":mat[i][low],"index":{"i":low,"j":j}})
-        print("hello")
+    print(ret)
     return ret
 def display(mat):
     if isinstance(mat,list):
@@ -140,19 +146,19 @@ def display(mat):
         for i in mat:
             print(mat[i])
 
-m = int(input("Enter the no rows: "))
-n = int(input("Enter the no of cols: "))
-# matrix=[[1,2,3],[4,5,6],[7,8,9]]
+# m = int(input("Enter the no rows: "))
+# n = int(input("Enter the no of cols: "))
+matrix=[[1,2,3],[4,5,6],[7,8,9]]
 # matrix2=[[1,2,3],[4,5,6],[7,8,9]]
-# m,n,m2,n2 = 3,3,3,3
-matrix = []
-matrix2 = []
-for i in range(0,m):
-    tempMat = []
-    for j in range(0,n):
-        a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
-        tempMat.append(a)
-    matrix.append(tempMat)
+m,n,m2,n2 = 3,3,3,3
+# matrix = []
+# matrix2 = []
+# for i in range(0,m):
+#     tempMat = []
+#     for j in range(0,n):
+#         a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
+#         tempMat.append(a)
+#     matrix.append(tempMat)
 
 menu = "Enter One of the operation to apply:\n \
     1. Add\n \

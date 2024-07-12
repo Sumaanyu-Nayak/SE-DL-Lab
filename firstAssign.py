@@ -1,5 +1,3 @@
-from statistics import mode
-
 def mode3(marks):
     ret = {}
     for i in marks:
@@ -10,12 +8,12 @@ def mode3(marks):
     maxVal = max(ret.values())
     modearr = []
     for i in ret:
-        if ret[i] == maxVal:
+        if ret[i] == maxVal and ret[i]>1:
             modearr.append(i)
     modearr.sort()
     return modearr
 
-
+#input area
 n = int(input("Enter the no of students: "))
 marks = []
 i=0
@@ -26,35 +24,39 @@ while i<n:
     else:
         marks.append(a)
         i+=1
-# n=5
-# marks = [10,27,10,27,5]
-# average marks
 
+
+# variables
+absentCount = 0
+avgSum = 0
+passedFailed = 0
+#variables
 print("Marks of students:", marks)
 lowestMark = marks[0]
 for i in range(n):
-    if(marks[i]>=0 and marks[i]<lowestMark):
+    if(marks[i]>=0 and marks[i]<lowestMark):    #lowest marks
         lowestMark=marks[i]
-
-absentCount = 0
-for j in range(n):
-    if(marks[j]<0):
+    if(marks[i]<0):                             #absent students
         absentCount+=1
-avgSum = 0
-for j in range(n):
-    if(marks[j]>0):
-        avgSum += marks[j]
-print("average marks:", (avgSum/(n-absentCount)))
-print("Highest marks:", max(marks))
-print("Lowest marks:", lowestMark)
-print("No of absent Students:",absentCount)
-passedFailed = 0
-for i in range(n):
-    if(marks[i]<35):
+    if(marks[i]>0):                             #average marks
+        avgSum += marks[i]
+    if(marks[i]<35 and marks[i]>=0):            #passed and failed students
         passedFailed+=1
-print("No of students failed:", (passedFailed-absentCount))
-print("No of students passed:", (n-passedFailed))
 
+
+
+#Print statements
+
+print("average marks:", (avgSum/(n-absentCount)))                   #average marks
+print("Highest marks:", max(marks))                                 #highest marks
+print("Lowest marks:", lowestMark)                                  #lowest marks
+print("No of absent Students:",absentCount)                         #absent students
+print("No of students failed:", (passedFailed-absentCount))         #failed students
+print("No of students passed:", (n-passedFailed))                   #passed students
+
+
+
+#mode
 if len(mode3(marks))>0:
     if len(mode3(marks))>2:
         print("Mode: ", mode3(marks))
