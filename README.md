@@ -1,6 +1,6 @@
 # SE-DL-Lab Practicals
 
-## Practical 1 - 1.py
+## Practical 1 - <a href="1.py">1.py<a>
 Hey there! In this assignment, you will be writing a Python program to store marks scored in the subject "Fundamental of Data Structure" by N students in the class. You will also write functions to compute the following:
 
 Average Score of the Class
@@ -27,7 +27,7 @@ Display Marks with Highest Frequency:
 
 Implement a function to display the mark(s) with the highest frequency in the class. You can achieve this by using a dictionary to count the frequency of each mark. (or Using Mode function)
 
-## Practical 2 - 2.py
+## Practical 2 - <a href="2.py">2.py<a>
 In this assignment, you will write a Python program using functions to compute various aspects of sports participation among the students in the second year computer engineering class. You will need to consider the groups A, B, and C, where students play cricket, badminton, and football respectively.
 
 Task Overview
@@ -70,7 +70,7 @@ Remember to avoid duplicate entries while realizing the groups and refrain from 
 
 By following these guidelines, you will be able to create a comprehensive Python program to compute the various aspects of sports participation among the students in the second year computer engineering class.
 
-## Practical 3 - 3.py,3-new.py
+## Practical 3 - <a href="3.py">3.py<a>
 In this assignment, you will write a Python program to perform various operations on matrices. You will check whether a given matrix is upper triangular, compute the summation of diagonal elements, compute the transpose of the matrix, add and multiply two matrices, determine the location of a saddle point, and check if the matrix is a magic square.
 
 
@@ -100,19 +100,19 @@ Check for Magic Square
 Finally, you will create a function to check if the given matrix is a magic square. A magic square is an n x n matrix of the integers 1 to n^2 such that the sum of each row, column, and diagonal is the same.
 You will need to calculate the sum of each row, column, and diagonal, and then compare these sums to determine if the matrix is a magic square.
 
-## Practical 5 - 5.py
+## Practical 5 - <a href="5.py">5.py<a>
 a) Write a Python program to store roll numbers of student in array who attended training program in random order. Write function for searching whether particular student attended training program or not using linear search and sentinel search.
 
 b) Write a Python program to store roll numbers of student array who attended training program in sorted order. Write function for searching whether particular student attended training program or not using binary search and Fibonacci search.
 
-## Practical 7 - 7.py,8.py
+## Practical 7 - <a href="7.py">7.py<a>,<a href="8.py">8.py<a>
 Write a python program to represent polynomials using One-D array  and 2-D array  and perform operations. Write function
 a) To input and output polynomials represented as bmxem+ bm-1xem-1 +….. +b0xe0.
 b) Evaluates a polynomial at given value of x
 c) Add two polynomials
 d) Multiplies two polynomials
 
-## Practical 8 - 9.py
+## Practical 8 - <a href="9.py">9.py<a>
 Introduction
 In this assignment, you will write a Python program to work with sparse matrix representation and perform various operations on it. The operations include finding the transpose, fast transpose, and addition of two matrices. There is also an optional task to implement the multiplication of two sparse matrices.
 
