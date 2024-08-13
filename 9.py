@@ -88,3 +88,21 @@ def addition(mat,mat2):
 
 for i in simpleTrans(sparse):
     print(i)
+
+def fastTranspose(sp1):
+    sp2 = [[sp1[0][1],sp1[0][0],sp1[0][2]]] + [0]* sp1[0][2]
+    print(sp2)
+    freq = [0] * (sp1[0][1]+1)
+    for i in sp1[1:]:
+        freq[(i[1])+1] += 1
+    print(freq)
+    freq[0]=1
+    for i in range(1,len(freq)-1):
+        freq[i] = freq[i-1]+freq[i]
+    print (freq)
+    print()
+    for i in sp1[1:]:
+        sp2[freq[i[1]]] = [i[1],i[0],i[2]]
+        freq[i[1]]+=1
+    for i in sp2:
+        print(i)
