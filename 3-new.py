@@ -58,24 +58,27 @@ def Q3(mat1,mat2,m1,m2,n1,n2):    # Multiply
 
 def Q4(mat,m,n):   # Diagonal Sum
     ret = 0
-    for i in range(m):
-        for j in range(n):
-            if i == j:
-                ret += mat[i][j]
-    ret = {
-        "displayItem": ret
-    }
+    if m!=n:
+        ret = "Operation"
+        for i in range(m):
+            ret += mat[i][i]
+        ret = {
+            "displayItem": ret
+        }
     return ret
 
 def Q5(mat,m,n):   # Check Upper Triangular
     ret = False
-    for i in range(m):
-        for j in range(n):
-            if(i>j and mat[i][j]==0):
-                ret=True
-            else:
-                ret=False
-                break
+    if m!=n:
+        ret=False
+    else:
+        for i in range(m):
+            for j in range(n):
+                if(i>j and mat[i][j]==0):
+                    ret=True
+                else:
+                    ret=False
+                    break
     if ret:
         ret = {
             "displayItem":"It is an Upper Triangular Matrix"
@@ -115,6 +118,24 @@ def Q7(mat,m,n): #Transpose
         ret.append(tempMat)
     return ret
 
+def saddle(mat,m,n):
+    ret=[]
+    for i in range(m):                                # [1,2,3]
+        low = min(mat[i])                             # [4,5,6]
+        low = mat[i].index(low)                       # [7,7,7] 
+        for j in range(n):
+            if j==low:
+                continue
+            elif mat[i][low] < mat[i][j]:
+                print("break")
+                print(mat[i][low],mat[j][i])
+                break
+            else:
+                print("append")
+                print(mat[i][low],mat[j][i])
+                ret.append({"value":mat[i][low],"index":{"i":low,"j":j}})
+    print(ret)
+    return ret
 def display(mat):
     if isinstance(mat,list):
         for i in mat:
@@ -125,19 +146,19 @@ def display(mat):
         for i in mat:
             print(mat[i])
 
-m = int(input("Enter the no rows: "))
-n = int(input("Enter the no of cols: "))
-# matrix=[[1,2,3],[4,5,6],[7,8,9]]
-# matrix2=[[1,2,3],[4,5,6],[7,8,9]]
-# m,n,m2,n2 = 3,3,3,3
-matrix = []
-matrix2 = []
-for i in range(0,m):
-    tempMat = []
-    for j in range(0,n):
-        a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
-        tempMat.append(a)
-    matrix.append(tempMat)
+# m = int(input("Enter the no rows: "))
+# n = int(input("Enter the no of cols: "))
+matrix=[[1,2,3],[4,5,6],[7,8,9]]
+matrix2=[[1,2,3],[4,5,6],[7,8,9]]
+m,n,m2,n2 = 3,3,3,3
+# matrix = []
+# matrix2 = []
+# for i in range(0,m):
+#     tempMat = []
+#     for j in range(0,n):
+#         a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
+#         tempMat.append(a)
+#     matrix.append(tempMat)
 
 menu = "Enter One of the operation to apply:\n \
     1. Add\n \
@@ -189,3 +210,7 @@ elif option == 6:
     display(Q6(matrix,m,n))
 elif option == 7:
     display(Q7(matrix,m,n))
+elif option == 8:
+    a = saddle(matrix,m,n)
+    for i in a:
+        print(i["value"],i["index"])

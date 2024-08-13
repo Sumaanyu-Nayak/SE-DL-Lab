@@ -58,27 +58,24 @@ def Q3(mat1,mat2,m1,m2,n1,n2):    # Multiply
 
 def Q4(mat,m,n):   # Diagonal Sum
     ret = 0
-    if m!=n:
-        ret = "Operation"
-        for i in range(m):
-            ret += mat[i][i]
-        ret = {
-            "displayItem": ret
-        }
+    for i in range(m):
+        for j in range(n):
+            if i == j:
+                ret += mat[i][j]
+    ret = {
+        "displayItem": ret
+    }
     return ret
 
 def Q5(mat,m,n):   # Check Upper Triangular
     ret = False
-    if m!=n:
-        ret=False
-    else:
-        for i in range(m):
-            for j in range(n):
-                if(i>j and mat[i][j]==0):
-                    ret=True
-                else:
-                    ret=False
-                    break
+    for i in range(m):
+        for j in range(n):
+            if(i>j and mat[i][j]==0):
+                ret=True
+            else:
+                ret=False
+                break
     if ret:
         ret = {
             "displayItem":"It is an Upper Triangular Matrix"
@@ -118,24 +115,6 @@ def Q7(mat,m,n): #Transpose
         ret.append(tempMat)
     return ret
 
-def saddle(mat,m,n):
-    ret=[]
-    for i in range(m):                                # [1,2,3]
-        low = min(mat[i])                             # [4,5,6]
-        low = mat[i].index(low)                       # [7,7,7] 
-        for j in range(n):
-            if j==low:
-                continue
-            elif mat[i][low] < mat[i][j]:
-                print("break")
-                print(mat[i][low],mat[j][i])
-                break
-            else:
-                print("append")
-                print(mat[i][low],mat[j][i])
-                ret.append({"value":mat[i][low],"index":{"i":low,"j":j}})
-    print(ret)
-    return ret
 def display(mat):
     if isinstance(mat,list):
         for i in mat:
@@ -146,19 +125,101 @@ def display(mat):
         for i in mat:
             print(mat[i])
 
-# m = int(input("Enter the no rows: "))
-# n = int(input("Enter the no of cols: "))
-matrix=[[1,2,3],[4,5,6],[7,8,9]]
-# matrix2=[[1,2,3],[4,5,6],[7,8,9]]
-m,n,m2,n2 = 3,3,3,3
-# matrix = []
-# matrix2 = []
-# for i in range(0,m):
-#     tempMat = []
-#     for j in range(0,n):
-#         a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
-#         tempMat.append(a)
-#     matrix.append(tempMat)
+# def saddle(mat,m,n):
+#     ret=[]
+#     for i in range(m):                               
+#         low = min(mat[i])                            
+#         low = mat[i].index(low)                       
+#         for j in range(n):
+#             if mat[i][low] < mat[j][i]:
+#                 print("break")
+#                 break
+#             else:
+#                 print("append")
+#                 print(mat[i][low],mat[j][i])
+#                 ret.append({"value":mat[i][low],"index":{"i":low,"j":j}})
+#     print(ret)
+#     return ret
+
+# def newSaddlepoint(mat,m,n):
+#     ret = []
+#     flg =False
+#     for i in range(n):
+#         low = mat[i][0]
+#         curr_j = 0
+#         for j in range(n):
+#             if low>mat[i][j]:
+#                 low=mat[i][j]
+#                 curr_j = j
+#         print(low,curr_j)
+#         for j in range(0,m):
+#             if low<mat[j][curr_j]:
+#                 print(low, mat[j][curr_j])
+#                 flg=False
+#                 break
+#             else:
+#                 flg=True
+                    
+#         if flg:
+#             ret.append({"value":low,"index":{"i":i,"j":j}})
+#         print(ret)
+
+#         if j==m:
+#             return ret
+#     return {
+#         "displayItem" : 'No such Element Found'
+#     }
+
+
+def is_magic_square(matrix):
+    m = len(matrix)
+    n = len(matrix[0])
+    
+    # Early exit for non-square matrices (not traditional magic squares)
+    if m != n:
+        return False
+    
+    # Calculate the magic constant for an n x n matrix
+    magic_constant = n * (n * n + 1) // 2
+    
+    # Check if all elements are distinct and in the range 1 to n^2
+    elements = set()
+    for row in matrix:
+        for num in row:
+            if num < 1 or num > n * n or num in elements:
+                return False
+            elements.add(num)
+    
+    # Check the sums of all rows
+    for row in matrix:
+        if sum(row) != magic_constant:
+            return False
+    
+    # Check the sums of all columns
+    for col in range(n):
+        if sum(matrix[row][col] for row in range(n)) != magic_constant:
+            return False
+    
+    # Check the sum of the main diagonal
+    if sum(matrix[i][i] for i in range(n)) != magic_constant:
+        return False
+    
+    # Check the sum of the anti-diagonal
+    if sum(matrix[i][n - 1 - i] for i in range(n)) != magic_constant:
+        return False
+    
+    return True
+
+m = int(input("Enter the no rows: "))
+n = int(input("Enter the no of cols: "))
+matrix = []
+matrix2 = []
+for i in range(0,m):
+    tempMat = []
+    for j in range(0,n):
+        a = int(input(f'Enter the {j+1} element of the row {i+1}: '))
+        tempMat.append(a)
+    matrix.append(tempMat)
 
 menu = "Enter One of the operation to apply:\n \
     1. Add\n \
@@ -167,7 +228,8 @@ menu = "Enter One of the operation to apply:\n \
     4. Diagonal Sum\n \
     5. Check Upper Triangular\n \
     6. Sadddle point\n \
-    7. Transpose\n"
+    7. Transpose\n \
+    8. Magic Check\n"
 
 print(menu)
 option = int(input("Enter your option: "))
@@ -178,7 +240,7 @@ if option==1:
     for i in range(0,m2):
         tempMat = []
         for j in range(0,n2):
-            a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
+            a = int(input(f'Enter the {j+1} element of the row {i+1}: '))
             tempMat.append(a)
         matrix2.append(tempMat)
     display(Q1(matrix,matrix2,m,n,m2,n2))
@@ -188,7 +250,7 @@ elif option==2:
     for i in range(0,m2):
         tempMat = []
         for j in range(0,n2):
-            a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
+            a = int(input(f'Enter the {j+1} element of the row {i+1}: '))
             tempMat.append(a)
         matrix2.append(tempMat)
     display(Q2(matrix,matrix2,m,n,m2,n2))
@@ -198,7 +260,7 @@ elif option==3:
     for i in range(0,m2):
         tempMat = []
         for j in range(0,n2):
-            a = int(input(f'Enter the ${j+1} element of the row ${i+1}: '))
+            a = int(input(f'Enter the {j+1} element of the row {i+1}: '))
             tempMat.append(a)
         matrix2.append(tempMat)
     display(Q3(matrix,matrix2,m,n,m2,n2))
@@ -211,6 +273,4 @@ elif option == 6:
 elif option == 7:
     display(Q7(matrix,m,n))
 elif option == 8:
-    a = saddle(matrix,m,n)
-    for i in a:
-        print(i["value"],i["index"])
+    print(is_magic_square(matrix)) 
