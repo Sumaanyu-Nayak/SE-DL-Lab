@@ -1,0 +1,35 @@
+.image_editor{
+    width: 100vw;
+    height: 100vh;
+    background-color: #e1e6ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .card{
+        padding: 28px;
+        width: 700px;
+        height: 80%;
+        background-color: #fff;
+        box-shadow: 0 8px 16px 0 rgb(201,201,201);
+        .card_header{
+            text-align: center;
+            padding: 15px;
+            h2{
+                text-transform: uppercase;
+                color: #e52fcf;
+            }
+        }
+        .card_body{
+            display: flex;
+            justify-content: center;
+            .sidebar{
+                .sidebody{
+                    width: 250px;
+                    border: 1px solid #c3c5c4;
+                    margin-right: 8px;
+                    height: 300px;
+                }
+            }
+        }
+    }
+}
