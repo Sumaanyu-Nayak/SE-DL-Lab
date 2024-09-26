@@ -1,29 +1,32 @@
-import React from 'react'
-import "./style/main.scss"
+import React from "react";
+import "./style/main.scss";
+import { GrRotateLeft, GrRotateRight } from "react-icons/gr";
+import { CgMergeHorizontal, CgMergeVertical } from "react-icons/cg";
+import { IoIosImage, IoMdRedo, IoMdUndo } from "react-icons/io";
 
 const Main = () => {
   const filterElements = [
     {
-      name: 'Brightness'
+      name: "Brightness",
     },
     {
-      name: 'Grayscale'
+      name: "Grayscale",
     },
     {
-      name: 'Sepia'
+      name: "Sepia",
     },
     {
-      name: 'Saturate'
+      name: "Saturate",
     },
     {
-      name: 'Contrast'
+      name: "Contrast",
     },
     {
-      name: 'Rotate'
+      name: "Rotate",
     },
-  ]
+  ];
   return (
-    <div className='image_editor'>
+    <div className="image_editor">
       <div className="card">
         <div className="card_header">
           <h2>------ Image Editor ------</h2>
@@ -45,13 +48,45 @@ const Main = () => {
                   </div>
                   <input type="range" />
                 </div>
+                <div className="rotate">
+                  <label htmlFor="">Rotate & Flip</label>
+                  <div className="icon">
+                    <div>
+                      <GrRotateLeft />
+                    </div>
+                    <div>
+                      <GrRotateRight />
+                    </div>
+                    <div>
+                      <CgMergeVertical />
+                    </div>
+                    <div>
+                      <CgMergeHorizontal />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="image_section">
+              <div className="image">
+                <label htmlFor="choose">
+                  <IoIosImage/>
+                  <span>Choose Image</span>
+                </label>
+              </div>
+              <div className="image_select">
+                <button className="undo"><IoMdUndo/></button>
+                <button className="redo"><IoMdRedo/></button>
+                <button className="crop">Crop Image</button>
+                <label htmlFor="choose">Choose Image</label>
+                <input type="file" id="choose"/>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
