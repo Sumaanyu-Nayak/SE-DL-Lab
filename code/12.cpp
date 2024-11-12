@@ -2,40 +2,48 @@
 using namespace std;
 
 // Node for doubly linked list
-struct Node {
+struct Node
+{
     int data;
-    Node* next;
-    Node* prev;
+    Node *next;
+    Node *prev;
 };
 
 // Class for binary number operations using a doubly linked list
-class BinaryNumber {
+class BinaryNumber
+{
 private:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
 
 public:
     // Constructor
     BinaryNumber() : head(nullptr), tail(nullptr) {}
 
     // Function to append a bit (0 or 1) to the list at the end
-    void append(int bit) {
-        Node* newNode = new Node();
+    void append(int bit)
+    {
+        Node *newNode = new Node();
         newNode->data = bit;
         newNode->next = nullptr;
         newNode->prev = tail;
-        if (tail) {
+        if (tail)
+        {
             tail->next = newNode;
-        } else {
+        }
+        else
+        {
             head = newNode;
         }
         tail = newNode;
     }
 
     // Function to display the binary number
-    void display() const {
-        Node* temp = head;
-        while (temp) {
+    void display() const
+    {
+        Node *temp = head;
+        while (temp)
+        {
             cout << temp->data;
             temp = temp->next;
         }
@@ -43,26 +51,27 @@ public:
     }
 
     // Function to compute the 1's complement
-    BinaryNumber onesComplement() {
-        Node* temp = head;
-        BinaryNumber result;
-        while (temp) {
-            temp->data = 1 - temp->data;  // Flip bits (0 to 1, 1 to 0)
+    void onesComplement()
+    {
+        Node *temp = head;
+        while (temp)
+        {
+            temp->data = 1 - temp->data; // Flip bits (0 to 1, 1 to 0)
             temp = temp->next;
         }
-        return result;
     }
 
     // Function to compute the 2's complement
-    BinaryNumber twosComplement() {
+    void twosComplement()
+    {
         // Step 1: Compute 1's complement
-        BinaryNumber result2;
-        BinaryNumber result = onesComplement();
+        onesComplement();
 
         // Step 2: Add 1 to the least significant bit (LSB)
-        Node* temp = tail;
+        Node *temp = tail;
         int carry = 1;
-        while (temp && carry) {
+        while (temp && carry)
+        {
             int sum = temp->data + carry;
             temp->data = sum % 2;
             carry = sum / 2;
@@ -70,50 +79,56 @@ public:
         }
 
         // If there's still a carry, add a new node at the beginning
-        if (carry) {
-            Node* newNode = new Node();
+        if (carry)
+        {
+            Node *newNode = new Node();
             newNode->data = carry;
             newNode->next = head;
             newNode->prev = nullptr;
             head->prev = newNode;
             head = newNode;
         }
-        return result2;
     }
 
     // Function to add two binary numbers
-    BinaryNumber addBinary(const BinaryNumber& other) {
+    BinaryNumber addBinary(const BinaryNumber &other)
+    {
         BinaryNumber result;
-        Node* p1 = this->tail;
-        Node* p2 = other.tail;
+        Node *p1 = this->tail;
+        Node *p2 = other.tail;
         int carry = 0;
 
-        while (p1 || p2 || carry) {
+        while (p1 || p2 || carry)
+        {
             int bit1 = p1 ? p1->data : 0;
             int bit2 = p2 ? p2->data : 0;
             int sum = bit1 + bit2 + carry;
-            cout<<bit1<<":"<<bit2<<":"<<sum<<endl;
 
-            result.appendFront(sum % 2);  // Add to front as we're building from LSB to MSB
+            result.appendFront(sum % 2); // Add to front as we're building from LSB to MSB
             carry = sum / 2;
 
-            if (p1) p1 = p1->prev;
-            if (p2) p2 = p2->prev;
+            if (p1)
+                p1 = p1->prev;
+            if (p2)
+                p2 = p2->prev;
         }
 
         return result;
     }
 
     // Helper function to add a node at the front of the list
-    void appendFront(int bit) {
-        cout<<"bit:"<<bit<<endl;
-        Node* newNode = new Node();
+    void appendFront(int bit)
+    {
+        Node *newNode = new Node();
         newNode->data = bit;
         newNode->next = head;
         newNode->prev = nullptr;
-        if (head) {
+        if (head)
+        {
             head->prev = newNode;
-        } else {
+        }
+        else
+        {
             tail = newNode;
         }
         head = newNode;
@@ -121,14 +136,16 @@ public:
 };
 
 // Test the program
-int main() {
+int main()
+{
     BinaryNumber bin1, bin2;
 
     // Input binary number 1
     cout << "Enter binary number 1: ";
     string binary1;
     cin >> binary1;
-    for (char bit : binary1) {
+    for (char bit : binary1)
+    {
         bin1.append(bit - '0');
     }
 
@@ -136,7 +153,8 @@ int main() {
     cout << "Enter binary number 2: ";
     string binary2;
     cin >> binary2;
-    for (char bit : binary2) {
+    for (char bit : binary2)
+    {
         bin2.append(bit - '0');
     }
 
